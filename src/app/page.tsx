@@ -198,7 +198,8 @@ export default function Home() {
                     <div className="text-center">
                       <button
                         onClick={() => setAppState(prev => ({ ...prev, uploadedImage: null }))}
-                        className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1"
+
                       >
                         Upload a different image
                       </button>
@@ -274,6 +275,7 @@ export default function Home() {
                             : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
                         }`}
                         aria-label="Generate AI image"
+
                       >
                         {appState.isGenerating ? (
                           <div className="flex items-center justify-center">
@@ -289,6 +291,7 @@ export default function Home() {
                         <button
                           onClick={handleAbort}
                           className="px-4 py-3 border border-red-300 dark:border-red-600 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+
                         >
                           Abort
                         </button>
@@ -308,7 +311,7 @@ export default function Home() {
             {/* Sidebar */}
             <div className="space-y-6">
               {/* Generated Image Preview */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6" tabIndex={0}>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                   Generated Image
                 </h3>
@@ -321,12 +324,14 @@ export default function Home() {
               </div>
 
               {/* Generation History */}
-              <GenerationHistory
-                history={appState.generationHistory}
-                onSelectGeneration={handleSelectGeneration}
-                onClearHistory={handleClearHistory}
-                disabled={appState.isGenerating}
-              />
+              <div tabIndex={0}>
+                <GenerationHistory
+                  history={appState.generationHistory}
+                  onSelectGeneration={handleSelectGeneration}
+                  onClearHistory={handleClearHistory}
+                  disabled={appState.isGenerating}
+                />
+              </div>
             </div>
           </div>
         </div>
